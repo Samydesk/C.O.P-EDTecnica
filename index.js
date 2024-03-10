@@ -8,44 +8,8 @@ app.use(express.json());
 
 myAPI(app);
 
-
-
-
-
-
 const admin = require('firebase-admin');
 const db = require('./db');
-
-app.post('/guardarDatos', (req, res) => {
-  const datos = req.body;
-modal = {
-    "tipo": "Homicidio",
-    "fecha": "XX-XX-XXXX",
-    "lugar": "Guatire",
-    "brigada": "123",
-    "detalles": "Aquí van los detalles"
-   };   
-
-   const collectionRef = admin.firestore().collection('misDatos');
-
-   collectionRef.add(datos)
-    .then((docRef) => {
-      console.log('Documento escrito con ID: ', docRef.id);
-      res.send('Datos guardados exitosamente');
-    })
-    .catch((error) => {
-      console.error('Error añadiendo el documento: ', error);
-      res.status(500).send('Error al guardar los datos');
-    });
-})
-
-
-
-
-
-
-
-
 
 // carpeta client/home
 app.use('/', express.static(path.resolve(__dirname, 'client', 'home')));
